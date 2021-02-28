@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import { ApolloClient, DefaultOptions } from '../../../core';
-import { InMemoryCache as Cache } from '../../../cache';
-import { ApolloProvider } from '../../../react/context';
-import { MockLink, MockedResponse } from './mockLink';
-import { ApolloLink } from '../../../link/core';
-import { Resolvers } from '../../../core';
-import { ApolloCache } from '../../../cache';
+import { ApolloClient, DefaultOptions } from "../../../core";
+import { InMemoryCache as Cache } from "../../../cache";
+import { ApolloProvider } from "../../../react/context";
+import { MockLink, MockedResponse } from "./mockLink";
+import { ApolloLink } from "../../../link/core";
+import { Resolvers } from "../../../core";
+import { ApolloCache } from "../../../cache";
 
 export interface MockedProviderProps<TSerializedCache = {}> {
   mocks?: ReadonlyArray<MockedResponse>;
@@ -45,18 +45,17 @@ export class MockedProvider extends React.Component<
     const client = new ApolloClient({
       cache: cache || new Cache({ addTypename }),
       defaultOptions,
-      link: link || new MockLink(
-        mocks || [],
-        addTypename,
-      ),
-      resolvers,
+      link: link || new MockLink(mocks || [], addTypename),
+      resolvers
     });
 
     this.state = { client };
+    console.log(this.state);
   }
 
   public render() {
     const { children, childProps } = this.props;
+    console.log(123);
     return children ? (
       <ApolloProvider client={this.state.client}>
         {React.cloneElement(React.Children.only(children), { ...childProps })}
