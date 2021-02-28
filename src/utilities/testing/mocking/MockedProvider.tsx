@@ -50,12 +50,10 @@ export class MockedProvider extends React.Component<
     });
 
     this.state = { client };
-    console.log(this.state);
   }
 
   public render() {
     const { children, childProps } = this.props;
-    console.log(123);
     return children ? (
       <ApolloProvider client={this.state.client}>
         {React.cloneElement(React.Children.only(children), { ...childProps })}
